@@ -1,4 +1,13 @@
-import { drinkCoffee, DRINK_COFFEE, eatSnack, EAT_SNACK, takeNap, TAKE_NAP, toStudy, STUDY } from './moodActions';
+import { 
+  drinkCoffee, 
+  DRINK_COFFEE, 
+  eatSnack, 
+  EAT_SNACK, 
+  takeNap, 
+  TAKE_NAP, 
+  toStudy, 
+  STUDY 
+} from './moodActions';
 
 describe('Mood Actions', () => {
   it('should make a Drink Coffee action', () => {
