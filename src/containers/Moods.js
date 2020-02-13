@@ -1,8 +1,13 @@
+import { 
+  drinkCoffee, 
+  eatSnack, 
+  takeNap, 
+  toStudy 
+} from '../actions/moodActions';
 import React from 'react';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
 import { useDispatch, useSelector } from 'react-redux';
-import { drinkCoffee, eatSnack, takeNap, toStudy } from '../actions/moodActions';
 import { getFace } from '../selectors/faceSelector';
 
 export const Moods = () => {
