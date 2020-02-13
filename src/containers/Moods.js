@@ -4,13 +4,14 @@ import {
   takeNap, 
   toStudy 
 } from '../actions/moodActions';
-import React from 'react';
+import React, { useState } from 'react';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFace } from '../selectors/faceSelector';
 
 export const Moods = () => {
+  const [start, setStart] = useState(false);
   const { coffees, snacks, naps, studies } = useSelector(state => state);
   const face = useSelector(getFace);
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const Moods = () => {
     dispatch(action);
   };
 
-  return (
+  return !start ? (<button onClick={() => setStart(true)}>START</button>) : (
     <>
       <Controls>
         <button onClick={() => handleSelection(drinkCoffee())}>coffee - {coffees}</button>
