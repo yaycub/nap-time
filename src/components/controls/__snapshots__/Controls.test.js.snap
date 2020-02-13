@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Controls component renders Controls 1`] = `
+exports[`Controls component should render Controls 1`] = `
 <section
   className="Controls"
 />
