@@ -1,6 +1,6 @@
 import { START_TIMER, STOP_TIMER } from '../actions/timerActions';
 
-export default function reducer(state, action) {
+export default function reducer(state = { timer: false }, action) {
   switch(action.type){
     case START_TIMER:
       return { ...state, timer: true };
