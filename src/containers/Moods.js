@@ -11,11 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFace } from '../selectors/faceSelector';
 
 export const Moods = () => {
-  const state = useSelector(state => state);
-  const { coffees, snacks, naps, studies } = state;
-  const dispatch = useDispatch();
+  const { coffees, snacks, naps, studies } = useSelector(state => state);
   const face = useSelector(getFace);
-
+  const dispatch = useDispatch();
+  
   const handleSelection = action => {
     dispatch(action);
   };
