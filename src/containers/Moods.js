@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
+import { useDispatch, useSelector } from 'react-redux';
+import { drinkCoffee, eatSnack, takeNap, toStudy } from '../actions/moodActions';
 
 export const isTired = state => state.coffees < 1 && state.naps < 1;
 export const isHyper = state => state.coffees > 3;
@@ -18,47 +20,26 @@ export const getFace = state => {
   return '😀';
 };
 
-export default class Moods extends Component {
-  state = {
-    coffees: 0,
-    snacks: 0,
-    naps: 0,
-    studies: 0
-  }
+export const Moods = () => {
+  const state = useSelector(state => state);
+  const { coffees, snacks, naps, studies } = state;
+  const dispatch = useDispatch();
 
-  handleSelection = action => {
-    switch(action.type) {
-      case 'DRINK_COFFEE':
-        this.setState(state => ({ coffees: state.coffees + 1 }));
-        break;
-      case 'EAT_SNACK':
-        this.setState(state => ({ snacks: state.snacks + 1 }));
-        break;
-      case 'TAKE_NAP':
-        this.setState(state => ({ naps: state.naps + 1 }));
-        break;
-      case 'STUDY':
-        this.setState(state => ({ studies: state.studies + 1 }));
-        break;
-      default:
-        console.log(`unhandled type: ${action.type}`);
-    }
-  }
+  const handleSelection = action => {
+    dispatch(action);
+  };
 
-  render() {
-    const { coffees, snacks, naps, studies } = this.state;
-    const face = getFace(this.state);
+  const face = getFace(state);
 
-    return (
-      <>
-        <Controls>
-          <button onClick={() => this.handleSelection({ type: 'DRINK_COFFEE' })}>coffee - {coffees}</button>
-          <button onClick={() => this.handleSelection({ type: 'EAT_SNACK' })}>snacks - {snacks}</button>
-          <button onClick={() => this.handleSelection({ type: 'TAKE_NAP' })}>naps - {naps}</button>
-          <button onClick={() => this.handleSelection({ type: 'STUDY' })}>studies - {studies}</button>
-        </Controls>
-        <Face emoji={face} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Controls>
+        <button onClick={() => handleSelection(drinkCoffee())}>coffee - {coffees}</button>
+        <button onClick={() => handleSelection(eatSnack())}>snacks - {snacks}</button>
+        <button onClick={() => handleSelection(takeNap())}>naps - {naps}</button>
+        <button onClick={() => handleSelection(toStudy())}>studies - {studies}</button>
+      </Controls>
+      <Face emoji={face} />
+    </>
+  );
+};
