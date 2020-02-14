@@ -17,3 +17,8 @@ export const STUDY = 'STUDY';
 export const toStudy = () => ({
   type: STUDY
 });
+
+export const RESET = 'RESET';
+export const makeReset = () => ({
+  type: RESET
+});

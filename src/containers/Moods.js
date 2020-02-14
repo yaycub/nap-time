@@ -9,8 +9,10 @@ import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFace } from '../selectors/faceSelector';
+import { useGame } from '../hooks/game';
 
 export const Moods = () => {
+  const { handleClick, counter, timer } = useGame();
   const { coffees, snacks, naps, studies } = useSelector(state => state);
   const face = useSelector(getFace);
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ export const Moods = () => {
     dispatch(action);
   };
 
-  return (
+  return !timer ? (<button onClick={handleClick}>START</button>) : (
     <>
       <Controls>
         <button onClick={() => handleSelection(drinkCoffee())}>coffee - {coffees}</button>
@@ -28,6 +30,7 @@ export const Moods = () => {
         <button onClick={() => handleSelection(toStudy())}>studies - {studies}</button>
       </Controls>
       <Face emoji={face} />
+      <p>Time Left: {counter}</p>
     </>
   );
 };

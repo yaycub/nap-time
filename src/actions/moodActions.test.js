@@ -6,7 +6,9 @@ import {
   takeNap, 
   TAKE_NAP, 
   toStudy, 
-  STUDY 
+  STUDY, 
+  makeReset,
+  RESET
 } from './moodActions';
 
 describe('Mood Actions', () => {
@@ -36,6 +38,13 @@ describe('Mood Actions', () => {
     const action = toStudy();
     expect(action).toEqual({
       type: STUDY
+    });
+  });
+
+  it('should make a Reset action', () => {
+    const action = makeReset();
+    expect(action).toEqual({
+      type: RESET
     });
   });
 });
